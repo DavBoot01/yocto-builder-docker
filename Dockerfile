@@ -42,7 +42,11 @@ RUN  curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > /usr
 
 
 ENV USER_NAME none
-
+# script/binary to exec when the user perform the login
+# If there is something to exec the container exec the task and than cloeses itself (handless
+# usage). Otherwise, there is nothing to execute, the container will be used in a interactive
+# mode and container allows the user to perform what he wants.
+ENV USER_CMD none
 
 ADD startup.sh /bin
 

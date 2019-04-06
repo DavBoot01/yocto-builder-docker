@@ -23,9 +23,19 @@ else
 	useradd -g $GROUP_ID  -d $WD -m -s /bin/bash -u $USER_ID $USER_NAME
 fi
 
-# Login as newest user (not as root)
-su - $USER_NAME
 
+if [[ -e $USER_CMD ]]; then
+	if [[ -x $USER_CMD  ]]; then
+		# Login as newest user (not as root) and perfom the single task
+		su - $USER_NAME $USER_CMD
+	else
+		# Login as newest user (not as root)
+		su - $USER_NAME
+	fi
+else
+	# Login as newest user (not as root)
+	su - $USER_NAME
+fi
 
-$@
+exit 0
 
