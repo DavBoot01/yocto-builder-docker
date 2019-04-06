@@ -20,8 +20,8 @@ RUN apt-get -y install libsdl1.2-dev xterm sed cvs subversion coreutils texi2htm
 RUN apt-get install sudo locales
 
 
-# Clean up APT when done.                                                        
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
 # Set the locale to en_US.UTF-8, because the Yocto build fails without any locale set.
@@ -30,7 +30,7 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 
-# Replace dash with bash  
+# Replace dash with bash
 # By default, Ubuntu uses dash as an alias for sh. Dash does not support the source command
 # needed for setting up the build environment in CMD. Use bash as an alias for sh.
 RUN rm /bin/sh && ln -s bash /bin/sh
@@ -44,7 +44,6 @@ RUN  curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > /usr
 ENV USER_NAME none
 
 
-ADD startup.sh /
-RUN mkdir /local_home
+ADD startup.sh /bin
 
-ENTRYPOINT ["sh", "/startup.sh"]
+ENTRYPOINT ["sh", "startup.sh"]
