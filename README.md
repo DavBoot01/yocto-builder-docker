@@ -31,11 +31,11 @@ So it starts from <strong>Ubuntu 16.04</strong>.
 
 ### To run it in handless mode
 
-    docker run -it --rm -v $(pwd):$(pwd) -w $(pwd) -e USER_NAME=$(whoami) -e USER_CMD=<script/binary> alienmind85/yocto-builder:L4.14.78 bash
+    docker run -it --rm -v $(pwd):$(pwd) -v /dev:/dev -v /proc:/proc -v /sys:/sys -w $(pwd) -e USER_NAME=$(whoami) -e USER_CMD=<script/binary> alienmind85/yocto-builder:L4.14.78 bash
 
 ### To run it in iteractive mode
 
-    docker run -it --rm -v $(pwd):$(pwd) -w $(pwd) -e USER_NAME=$(whoami) alienmind85/yocto-builder:L4.14.78 bash
+    docker run -it --rm -v $(pwd):$(pwd) -v /dev:/dev -v /proc:/proc -v /sys:/sys -w $(pwd) -e USER_NAME=$(whoami) alienmind85/yocto-builder:L4.14.78 bash
 
 
 <br>
