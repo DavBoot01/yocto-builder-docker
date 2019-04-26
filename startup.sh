@@ -41,8 +41,28 @@ fi
 echo -----------------------------------------
 echo
 
+if [[ -e .current_folder ]]; then
+	rm .current_folder
+fi
+if [[ -e .profile ]]; then
+	rm .profile
+fi
+
 # Login as newest user (not as root) and perfom the single task
 su - $USER_NAME $UCMD
+if [[  $PERSIST -eq 1 ]]; then
+	if [[ -e .current_folder ]]; then
+		echo "cd $(cat .current_folder)" > .profile
+	fi
+	su - $USER_NAME
+fi
+
+if [[ -e .current_folder ]]; then
+	rm .current_folder
+fi
+if [[ -e .profile ]]; then
+	rm .profile
+fi
 
 exit 0
 
